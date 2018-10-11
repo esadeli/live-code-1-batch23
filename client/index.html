@@ -13,7 +13,10 @@
     <script
 			  src="https://code.jquery.com/jquery-3.3.1.min.js"
 			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-			  crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
+        <script type="text/javascript"
+        src="http://maps.googleapis.com/maps/api/js?libraries=geometry&sensor=false&key=AIzaSyBSsKUzYG_Wz7u2qL6unHqfBOmvaZ0H1Mg&callback=initMap">
+</script>
     <link href="css/style.css" rel="stylesheet">
     <title>Live Code 1 - Event </title>
 
@@ -71,6 +74,9 @@
           </div>
           <hr>
           <h4>Maps</h4>
+          <div id="map">
+
+          </div>
         </div>
         <!-- /.col-lg-3 -->
 
@@ -137,7 +143,7 @@
                // give success message 
                $('#loginmessage').empty()
                $('#loginmessage').append(
-                    `<button type="button" class="btn btn-primary">
+                    `<button type="button" class="btn btn-success">
                       Success Login</button>`
                  )
                setTimeout( ()=>{
@@ -240,8 +246,29 @@
                console.log('ERROR Get list events ',error)
             })
         }
-      })
+      })  
     </script>
+    <script>
+      // Initialize and add the map
+      function initMap() {
+        // The location of Uluru
+        var uluru = {lat: -6.205642, lng: 106.845101};
+        // The map, centered at Uluru
+        var map = new google.maps.Map(
+            document.getElementById('map'), {zoom: 4, center: uluru});
+        // The marker, positioned at Uluru
+        var marker = new google.maps.Marker({position: uluru, map: map});
+      }
+    </script>
+    <!--Load the API from the specified URL
+    * The async attribute allows the browser to render the page while the API loads
+    * The key parameter will contain your own API key (which is not needed for this tutorial)
+    * The callback parameter executes the initMap() function
+    -->
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtELsqCngdBEcXv_PhmNOOVun2roiGyc8&callback=initMap">
+    </script>
+
   </body>
 
 </html>
