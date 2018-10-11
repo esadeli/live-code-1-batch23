@@ -7,5 +7,6 @@ const isLogin = require('../middlewares/isLogin')
 
 router.post('/', isLogin, EventController.createEvent)
       .get('/', EventController.getListEvents)
+      .get('/search/:keyword', isLogin, EventController.searchEvents)
 
 module.exports = router

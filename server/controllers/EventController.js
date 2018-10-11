@@ -34,6 +34,28 @@ class EventController {
             }) 
          })
     }
+
+    // search events
+    static searchEvents(req,res){
+        Event.find({})
+          .then(events =>{
+              let sortedArr = []
+              let regex = new RegExp(`${req.params.keyword}`,'i')
+  
+              events.forEach( eventdetail =>{
+                  if(regex.test(eventdetail.name)){
+                    //   console.log(eventdetail)
+                    sortedArr.push(eventdetail)
+                  }
+              })
+              res.status(200).send(sortedArr)
+          })
+          .catch(error => {
+            res.status(500).json({
+                msg: 'ERROR Get Search Event ',error
+            })
+          })
+    }
 }
 
 module.exports = EventController
