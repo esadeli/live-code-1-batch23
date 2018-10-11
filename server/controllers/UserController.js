@@ -46,21 +46,15 @@ class UserController {
                             token: token
                         })
                     }else{
-                       res.status(500).json({
-                           msg: 'ERROR Login Token ',err
-                       }) 
+                       res.status(500).json(`ERROR Login Token ${err}`) 
                     } 
                 })
               }else{
-                  res.status(400).json({
-                      msg: 'Login Failed User not found'
-                  })
+                  res.status(400).send('Login Failed User not found')
               }
           })
           .catch(error =>{
-              res.status(500).json({
-                  msg: 'ERROR Login User ',error
-              })
+              res.status(500).json(`ERROR Login User ${error}`)
           })
     }
 }
