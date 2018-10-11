@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const app = express()
 const UserRoutes = require('./routes/UserRoutes')
+const EventRoutes = require('./routes/EventRoutes')
 
 mongoose.connect('mongodb://localhost:27017/livecode1phase23db', {useNewUrlParser: true});
 
@@ -14,6 +15,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(cors())
 app.use('/users',UserRoutes)
+app.use('/events',EventRoutes)
 
 app.get('/', (req,res)=>{ res.send('OK')})
 app.listen(3000, () =>{
